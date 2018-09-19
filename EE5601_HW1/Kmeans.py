@@ -1,9 +1,9 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import cv2 as cv
+# import matplotlib.pyplot as plt
+# import cv2 as cv
 
 class Kmeans():
-    def __init__(self, X, K=3):
+    def __init__(self, X, K):
         self.K = K
         self.x = X
         pixels = np.unique(self.x, axis=0)
@@ -26,21 +26,23 @@ class Kmeans():
     def cluster(self,n_iter):
         count = 0 # initial iteration
         self.means = self.update()
-        print('Iteration count = ', count, '  -->  Error = ', self.error)
+        # print('Iteration count = ', count, '  -->  Error = ', self.error)
         count += 1
         while(count < n_iter): # interations untill error <= ε 
             self.means = self.update()
-            print('Iteration count = ', count, '  -->  Error = ', self.error)
+            # print('Iteration count = ', count, '  -->  Error = ', self.error)
             count += 1
         print('Done')
     
     # print the means and clusters at convergence
     def get_clusters(self): 
-        print('MEANS at covergence: ' , self.means)
+        # print('MEANS at covergence: ' , self.means)
+        clusters = []
         for k in range(self.K): 
             kth_cluster = self.x[np.argwhere(self.assign_k==k).flatten()]
-            print('Cluster ', k+1, ' : ', kth_cluster)
-            
+            # print('Cluster ', k+1, ' : ', kth_cluster)
+            clusters.append(kth_cluster)
+        return clusters
     # pixel belonging to each cluster is show by the color of the centroid of the cluster
     # def show_clusters(self):
     #     cluster_img = self.means[self.assign_k].astype(np.int).reshape(self.img_shape)
