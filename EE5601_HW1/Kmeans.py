@@ -23,16 +23,17 @@ class Kmeans():
         return np.array(self.new_means)
     
     # cluster the pixels by updating the means till error < ε 
+    # updated to cluster pixels for n_iter number of iterations
     def cluster(self,n_iter):
         count = 0 # initial iteration
         self.means = self.update()
         # print('Iteration count = ', count, '  -->  Error = ', self.error)
         count += 1
-        while(count < n_iter): # interations untill error <= ε 
+        while(count < n_iter):
             self.means = self.update()
             # print('Iteration count = ', count, '  -->  Error = ', self.error)
             count += 1
-        print('Done')
+#         print('Done')
     
     # print the means and clusters at convergence
     def get_clusters(self): 
